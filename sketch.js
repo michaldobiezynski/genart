@@ -1,15 +1,20 @@
 const canvasSketch = require("canvas-sketch");
 const { lerp } = require("canvas-sketch-util/math");
 const random = require("canvas-sketch-util/random");
+const palettes = require("nice-color-palettes");
 
 const settings = {
   dimensions: [2048, 2048],
 };
 
 const sketch = () => {
+  const colorCount = random.rangeFloor(1, 6);
+  const palette = random.shuffle(random.pick(palettes).slice(0, colorCount));
+  console.log(palette);
+
   const createGrid = () => {
     const points = [];
-    const count = 20;
+    const count = 30;
     for (let x = 0; x < count; x++) {
       for (let y = 0; y < count; y++) {
         const u = count <= 1 ? 0.5 : x / (count - 1);
@@ -19,6 +24,7 @@ const sketch = () => {
         points.push({
           radius: Math.abs(random.gaussian()) * 0.01,
           position: [u, v],
+          color: random.pick(palette),
         });
       }
     }
@@ -34,7 +40,7 @@ const sketch = () => {
     context.fillRect(0, 0, width, height);
 
     points.forEach((data) => {
-      const { position, radius } = data;
+      const { position, radius, color } = data;
 
       const [u, v] = position;
 
@@ -43,7 +49,7 @@ const sketch = () => {
 
       context.beginPath();
       context.arc(x, y, radius * width, 0, Math.PI * 2, false);
-      context.fillStyle = "black";
+      context.fillStyle = color;
       context.fill();
     });
   };
