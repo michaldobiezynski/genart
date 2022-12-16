@@ -7,6 +7,9 @@ const settings = {
   dimensions: [2048, 2048],
 };
 
+random.setSeed(random.getRandomSeed());
+console.log(random.getSeed());
+
 const sketch = () => {
   const colorCount = random.rangeFloor(1, 6);
   const palette = random.shuffle(random.pick(palettes)).slice(0, colorCount);
@@ -57,7 +60,7 @@ const sketch = () => {
       context.font = `${radius * width}px "Helvetica"`;
       context.translate(x, y);
       context.rotate(rotation);
-      context.fillText(":)", x, y);
+      context.fillText("=====", x, y);
       context.restore();
     });
   };
