@@ -9,6 +9,9 @@ const random = require("canvas-sketch-util/random");
 const palettes = require("nice-color-palettes");
 
 const settings = {
+  dimensions: [1024, 1024],
+  fps: 24,
+  duration: 4,
   // Make the loop animated
   animate: true,
   // Get a WebGL canvas rather than 2D
@@ -106,8 +109,8 @@ const sketch = ({ context }) => {
       camera.updateProjectionMatrix();
     },
     // Update & render your scene here
-    render({ time }) {
-      scene.rotation.y = time;
+    render({ playhead }) {
+      scene.rotation.y = playhead * Math.PI * 2;
       renderer.render(scene, camera);
     },
     // Dispose of events & renderer for cleaner hot-reloading
