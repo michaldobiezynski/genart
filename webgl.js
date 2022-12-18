@@ -110,10 +110,15 @@ const sketch = ({ context }) => {
       camera.updateProjectionMatrix();
     },
     // Update & render your scene here
+<<<<<<< HEAD
     render({ playhead }) {
       const t = Math.sin(playhead * Math.PI);
       // scene.rotation.z = eases.expoInOut(t);
       scene.rotation.z = easeFn(t);
+=======
+    render({ time }) {
+      scene.rotation.y = time;
+>>>>>>> parent of 9e725e6 (exporting gifs and mp4s)
       renderer.render(scene, camera);
     },
     // Dispose of events & renderer for cleaner hot-reloading
