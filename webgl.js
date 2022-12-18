@@ -107,6 +107,7 @@ const sketch = ({ context }) => {
     },
     // Update & render your scene here
     render({ time }) {
+      scene.rotation.y = time;
       renderer.render(scene, camera);
     },
     // Dispose of events & renderer for cleaner hot-reloading
