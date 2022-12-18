@@ -38,9 +38,9 @@ const sketch = ({ context }) => {
   const box = new THREE.BoxGeometry(0.5, 0.5, 0.5);
 
   // Setup a material
-  const material = new THREE.MeshBasicMaterial({
-    color: "red",
-  });
+  // const material = new THREE.MeshBasicMaterial({
+  //   color: "red",
+  // });
 
   const palette = random.pick(palettes);
 
@@ -49,7 +49,7 @@ const sketch = ({ context }) => {
     for (let y = 0; y < 10; y++) {
       const mesh = new THREE.Mesh(
         box,
-        new THREE.MeshBasicMaterial({
+        new THREE.MeshStandardMaterial({
           color: random.pick(palette),
         })
       );
@@ -67,6 +67,12 @@ const sketch = ({ context }) => {
       scene.add(mesh);
     }
   }
+
+  scene.add(new THREE.AmbientLight("hsl(0,0%,40%)"));
+
+  const light = new THREE.DirectionalLight("white", 1);
+  light.position.set(0, 0, 4);
+  scene.add(light);
 
   // const mesh = new THREE.Mesh(geometry, material);
   // scene.add(mesh);
