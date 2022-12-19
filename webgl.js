@@ -11,6 +11,9 @@ const eases = require("eases");
 const BezierEasing = require("bezier-easing");
 
 const settings = {
+  dimensions: [1024, 1024],
+  fps: 24,
+  duration: 4,
   // Make the loop animated
   animate: true,
   // Get a WebGL canvas rather than 2D
@@ -114,7 +117,6 @@ const sketch = ({ context }) => {
       const t = Math.sin(playhead * Math.PI);
       // scene.rotation.z = eases.expoInOut(t);
       scene.rotation.z = easeFn(t);
-
       renderer.render(scene, camera);
     },
     // Dispose of events & renderer for cleaner hot-reloading
