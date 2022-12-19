@@ -115,8 +115,8 @@ const sketch = ({ context }) => {
     // Update & render your scene here
     render({ playhead }) {
       const t = Math.sin(playhead * Math.PI);
-      // scene.rotation.z = eases.expoInOut(t);
-      scene.rotation.z = easeFn(t);
+      scene.rotation.z = eases.expoInOut(t);
+      // scene.rotation.z = easeFn(t);
       renderer.render(scene, camera);
     },
     // Dispose of events & renderer for cleaner hot-reloading
